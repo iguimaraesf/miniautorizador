@@ -1,0 +1,10 @@
+C:\DEV\_desafios_\vr\miniautorizador\src\main\java\com\vr\miniautorizador\service\CartaoValeService.java
+C:\DEV\_desafios_\vr\miniautorizador\src\main\java\com\vr\miniautorizador\exception\autorizador\CartaoNaoEncontradoException.java
+C:\DEV\_desafios_\vr\miniautorizador\src\main\java\com\vr\miniautorizador\exception\autorizador\CartaoJaExisteException.java
+C:\DEV\_desafios_\vr\miniautorizador\src\main\java\com\vr\miniautorizador\exception\BaseException.java
+C:\DEV\_desafios_\vr\miniautorizador\src\main\java\com\vr\miniautorizador\service\cartao\CartaoNovoDto.java
+C:\DEV\_desafios_\vr\miniautorizador\src\main\java\com\vr\miniautorizador\MiniautorizadorApplication.java
+C:\DEV\_desafios_\vr\miniautorizador\src\main\java\com\vr\miniautorizador\repository\cartao\CartaoVale.java
+C:\DEV\_desafios_\vr\miniautorizador\src\main\java\com\vr\miniautorizador\controller\CartaoValeController.java
+C:\DEV\_desafios_\vr\miniautorizador\src\main\java\com\vr\miniautorizador\repository\CartaoValeRepository.java
+C:\DEV\_desafios_\vr\miniautorizador\src\main\java\com\vr\miniautorizador\exception\handler\GerenciadorExcecao.java

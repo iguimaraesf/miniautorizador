@@ -1,6 +1,7 @@
 package com.vr.miniautorizador.service;
 
 import com.vr.miniautorizador.exception.autorizador.CartaoJaExisteException;
+import com.vr.miniautorizador.exception.autorizador.CartaoNaoEncontradoException;
 import com.vr.miniautorizador.fixture.CartaoValeFixture;
 import com.vr.miniautorizador.repository.CartaoValeRepository;
 import com.vr.miniautorizador.repository.cartao.CartaoVale;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Optional;
 
@@ -40,9 +42,22 @@ class CartaoValeServiceTest {
         Mockito.when(repository.findById(param.getNumeroCartao())).thenReturn(Optional.empty());
         var res = service.criar(param);
         Assertions.assertAll(() -> {
-                Assertions.assertEquals(res.getSenha(), param.getSenha());
-                Assertions.assertEquals(res.getNumeroCartao(), param.getNumeroCartao());
-                Mockito.verify(repository).save(Mockito.any());
+            Assertions.assertEquals(res.getSenha(), param.getSenha());
+            Assertions.assertEquals(res.getNumeroCartao(), param.getNumeroCartao());
+            Mockito.verify(repository).save(Mockito.any());
         });
+    }
+
+    @Test
+    void saldoCartaoInexistente() {
+        Mockito.when(repository.findById(Mockito.anyString())).thenReturn(Optional.empty());
+        Assertions.assertThrows(CartaoNaoEncontradoException.class, () -> service.vefiricarSaldo("1111222233334444"));
+    }
+
+    @Test
+    void saldoCartao() {
+        CartaoVale entidade = CartaoValeFixture.criarEntidade();
+        Mockito.when(repository.findById(Mockito.anyString())).thenReturn(Optional.of(entidade));
+        Assertions.assertEquals(entidade.getSaldo(), service.vefiricarSaldo("1111222233334444"));
     }
 }

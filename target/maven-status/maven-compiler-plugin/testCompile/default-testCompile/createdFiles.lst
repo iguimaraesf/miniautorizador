@@ -1,0 +1,4 @@
+com\vr\miniautorizador\service\CartaoValeServiceTest.class
+com\vr\miniautorizador\service\CartaoNovoDtoTest.class
+com\vr\miniautorizador\fixture\CartaoValeFixture.class
+com\vr\miniautorizador\MiniautorizadorApplicationTests.class

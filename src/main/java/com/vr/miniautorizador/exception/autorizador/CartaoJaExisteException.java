@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 public class CartaoJaExisteException extends BaseException {
     private CartaoNovoDto dto;
     public CartaoJaExisteException(CartaoNovoDto dto) {
-        super(HttpStatus.UNPROCESSABLE_ENTITY, "O cartão " + dto.getNumeroCartao() + " já existe");
+        super("O cartão " + dto.getNumeroCartao() + " já existe");
         this.dto = dto;
     }
 }

@@ -1,0 +1,10 @@
+com\vr\miniautorizador\controller\CartaoValeController.class
+com\vr\miniautorizador\exception\autorizador\CartaoJaExisteException.class
+com\vr\miniautorizador\exception\handler\GerenciadorExcecao.class
+com\vr\miniautorizador\repository\cartao\CartaoVale.class
+com\vr\miniautorizador\MiniautorizadorApplication.class
+com\vr\miniautorizador\service\CartaoValeService.class
+com\vr\miniautorizador\exception\BaseException.class
+com\vr\miniautorizador\repository\CartaoValeRepository.class
+com\vr\miniautorizador\exception\autorizador\CartaoNaoEncontradoException.class
+com\vr\miniautorizador\service\cartao\CartaoNovoDto.class
