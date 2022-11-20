@@ -1,5 +1,6 @@
 package com.vr.miniautorizador.exception.handler;
 
+import com.vr.miniautorizador.exception.BaseTransacaoException;
 import com.vr.miniautorizador.exception.autorizador.CartaoJaExisteException;
 import com.vr.miniautorizador.exception.autorizador.CartaoNaoEncontradoException;
 import com.vr.miniautorizador.service.cartao.CartaoNovoDto;
@@ -24,5 +25,11 @@ public class GerenciadorExcecao {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String quandoNaoEncontrarCartao(CartaoNaoEncontradoException ex, WebRequest request) {
         return "";
+    }
+
+    @ExceptionHandler(BaseTransacaoException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public String quandoHouverErroNaTransacao(BaseTransacaoException ex, WebRequest request) {
+        return ex.getMessage();
     }
 }

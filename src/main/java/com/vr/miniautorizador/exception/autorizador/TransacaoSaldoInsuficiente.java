@@ -1,0 +1,10 @@
+package com.vr.miniautorizador.exception.autorizador;
+
+import com.vr.miniautorizador.exception.BaseTransacaoException;
+import com.vr.miniautorizador.exception.ErroDeTransacao;
+
+public class TransacaoSaldoInsuficiente extends BaseTransacaoException {
+    public TransacaoSaldoInsuficiente() {
+        super(ErroDeTransacao.SALDO_INSUFICIENTE);
+    }
+}

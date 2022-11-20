@@ -16,7 +16,7 @@ public class CartaoValeFixture {
     public static CartaoVale criarEntidade() {
         var res = new CartaoVale();
         res.setNumeroCartao("1111222233334444");
-        res.setSenha("1234");
+        res.setSenha("$2a$16$b9Lb0fipDYfnV5s85/VKGOkdveqZV8CsF5PaOUKjbK69ZFIHBPUve");
         res.setSaldo(new BigDecimal("455.21"));
         return res;
     }

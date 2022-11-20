@@ -1,8 +1,8 @@
 package com.vr.miniautorizador.service;
 
-import com.vr.miniautorizador.exception.autorizador.CartaoJaExisteException;
-import com.vr.miniautorizador.exception.autorizador.CartaoNaoEncontradoException;
+import com.vr.miniautorizador.exception.autorizador.*;
 import com.vr.miniautorizador.fixture.CartaoValeFixture;
+import com.vr.miniautorizador.fixture.TransacaoFixture;
 import com.vr.miniautorizador.repository.CartaoValeRepository;
 import com.vr.miniautorizador.repository.cartao.CartaoVale;
 import com.vr.miniautorizador.service.cartao.CartaoNovoDto;
@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
@@ -60,4 +61,50 @@ class CartaoValeServiceTest {
         Mockito.when(repository.findById(Mockito.anyString())).thenReturn(Optional.of(entidade));
         Assertions.assertEquals(entidade.getSaldo(), service.vefiricarSaldo("1111222233334444"));
     }
+
+    @Test
+    void realizarTransacaoCartaoInexistente() {
+        var trans = TransacaoFixture.transacaoOk();
+        Mockito.when(repository.findById(Mockito.anyString())).thenReturn(Optional.empty());
+        Assertions.assertThrows(TransacaoCartaoInexistenteException.class, () -> service.realizarTransacao(trans));
+    }
+
+    @Test
+    void realizarTransacaoSenhaInvalida() {
+        var trans = TransacaoFixture.transacaoOk();
+        var cartao = CartaoValeFixture.criarEntidade();
+        cartao.setSenha("invalido");
+        Mockito.when(repository.findById(Mockito.anyString())).thenReturn(Optional.of(cartao));
+        Assertions.assertThrows(TransacaoSenhaInvalida.class, () -> service.realizarTransacao(trans));
+    }
+
+    @Test
+    void realizarTransacaoSaldoInsuficiente() {
+        var trans = TransacaoFixture.transacaoOk();
+        var cartao = CartaoValeFixture.criarEntidade();
+        cartao.setSaldo(trans.getValor().subtract(new BigDecimal("0.01")));
+        Mockito.when(repository.findById(Mockito.anyString())).thenReturn(Optional.of(cartao));
+        Assertions.assertThrows(TransacaoSaldoInsuficiente.class, () -> service.realizarTransacao(trans));
+    }
+
+    @Test
+    void realizarTransacaoValorExato() {
+        var trans = TransacaoFixture.transacaoOk();
+        var cartao = CartaoValeFixture.criarEntidade();
+        cartao.setSaldo(trans.getValor());
+        Mockito.when(repository.findById(Mockito.anyString())).thenReturn(Optional.of(cartao));
+        service.realizarTransacao(trans);
+        Mockito.verify(repository).save(cartao);
+    }
+
+    @Test
+    void realizarTransacaoSobraSaldo() {
+        var trans = TransacaoFixture.transacaoOk();
+        var cartao = CartaoValeFixture.criarEntidade();
+        cartao.setSaldo(trans.getValor().add(new BigDecimal("0.01")));
+        Mockito.when(repository.findById(Mockito.anyString())).thenReturn(Optional.of(cartao));
+        service.realizarTransacao(trans);
+        Mockito.verify(repository).save(cartao);
+    }
+
 }
