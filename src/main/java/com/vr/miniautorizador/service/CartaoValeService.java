@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -23,6 +25,7 @@ public class CartaoValeService {
     private final CartaoValeRepository repository;
     private PasswordEncoder encoder = new BCryptPasswordEncoder(16);
 
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public CartaoNovoDto criar(CartaoNovoDto cartao) {
         var entidade = repository.findById(cartao.getNumeroCartao());
         entidade.ifPresent(info -> {
@@ -39,6 +42,7 @@ public class CartaoValeService {
         return entidade.getSaldo();
     }
 
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void realizarTransacao(TransacaoDto transacao) {
         var entidade = repository.findById(transacao.getNumeroCartao()).orElse(new CartaoVale());
         BaseValidacaoTransacao condicao = new TransacaoNivel0CartaoExiste();
