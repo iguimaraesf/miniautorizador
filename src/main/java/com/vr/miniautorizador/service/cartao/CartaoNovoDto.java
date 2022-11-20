@@ -8,11 +8,12 @@ import org.springframework.beans.BeanUtils;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CartaoNovoDto {
+public class CartaoNovoDto implements Serializable {
     @Size(min = 16, max = 16)
     @NotNull
     private String numeroCartao;

@@ -6,16 +6,17 @@ import com.vr.miniautorizador.repository.cartao.CartaoVale;
 import com.vr.miniautorizador.service.cartao.CartaoNovoDto;
 import com.vr.miniautorizador.service.cartao.TransacaoDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CartaoValeService {
     private final CartaoValeRepository repository;
     private PasswordEncoder encoder = new BCryptPasswordEncoder(16);
@@ -46,17 +47,20 @@ public class CartaoValeService {
     }
 
     private void validarExistencia(CartaoVale entidade) {
-        Optional.ofNullable(entidade).orElseThrow(TransacaoCartaoInexistenteException::new);
+        var res = Optional.ofNullable(entidade).orElseThrow(TransacaoCartaoInexistenteException::new);
+        log.trace("{} existe", res);
     }
 
     private void validarMesmaSenha(CartaoVale entidade, String senha) {
-        boolean res = encoder.matches(senha, entidade.getSenha());
-        Optional.of(res).filter(v -> v).orElseThrow(TransacaoSenhaInvalida::new);
+        boolean comparacao = encoder.matches(senha, entidade.getSenha());
+        var res = Optional.of(comparacao).filter(v -> v).orElseThrow(TransacaoSenhaInvalida::new);
+        log.trace("{} mesma senha", res);
     }
 
     private void validarSaldoSuficiente(CartaoVale entidade, BigDecimal valor) {
         BigDecimal saldo = entidade.getSaldo();
-        Optional.of(saldo).filter(naConta -> naConta.compareTo(valor) >= 0).orElseThrow(TransacaoSaldoInsuficiente::new);
+        var res = Optional.of(saldo).filter(naConta -> naConta.compareTo(valor) >= 0).orElseThrow(TransacaoSaldoInsuficiente::new);
+        log.trace("{} com saldo", res);
     }
 
 }

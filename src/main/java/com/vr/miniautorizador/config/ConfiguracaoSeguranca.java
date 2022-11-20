@@ -17,7 +17,7 @@ public class ConfiguracaoSeguranca {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/cartoes", "/cartoes/*", "/transacoes");
+        return web -> web.ignoring().antMatchers("/cartoes", "/cartoes/*", "/transacoes");
     }
 
 }
