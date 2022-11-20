@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d3b05b5-6092-4ac0-b71e-1273cfa9804b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/vr/miniautorizador/fixture/JsonFixture.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/CartaoValeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/CartaoValeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/vr/miniautorizador/MiniautorizadorApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/vr/miniautorizador/MiniautorizadorApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,9 +119,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MiniautorizadorApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="miniautorizador" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.vr.miniautorizador.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.vr.miniautorizador" />
+      <option name="MAIN_CLASS_NAME" value="com.vr.miniautorizador.MiniautorizadorApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in miniautorizador" />
+        <item itemvalue="JUnit.MiniautorizadorApplicationTests" />
         <item itemvalue="JUnit.CartaoValeServiceTest" />
         <item itemvalue="Application.MiniautorizadorApplication" />
       </list>
@@ -147,11 +165,22 @@
       </map>
     </option>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/exception/handler/GerenciadorExcecao.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/miniautorizador$All_in_miniautorizador.ic" NAME="All in miniautorizador Coverage Results" MODIFIED="1668914037702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/miniautorizador$All_in_miniautorizador.ic" NAME="All in miniautorizador Coverage Results" MODIFIED="1668941486156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
