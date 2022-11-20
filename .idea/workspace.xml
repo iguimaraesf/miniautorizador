@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d3b05b5-6092-4ac0-b71e-1273cfa9804b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/validatransacao/BaseValidacaoTransacao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/validatransacao/TransacaoNivel0CartaoExiste.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/validatransacao/TransacaoNivel1MesmaSenha.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/validatransacao/TransacaoNivel2TemSaldo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/validatransacao/ValidacaoTransacao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/config/ConfiguracaoSeguranca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/config/ConfiguracaoSeguranca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/exception/BaseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/exception/BaseException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/exception/BaseTransacaoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/exception/BaseTransacaoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/exception/autorizador/CartaoJaExisteException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/exception/autorizador/CartaoJaExisteException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/exception/autorizador/CartaoNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/exception/autorizador/CartaoNaoEncontradoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/exception/handler/GerenciadorExcecao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/exception/handler/GerenciadorExcecao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/CartaoValeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/CartaoValeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/cartao/CartaoNovoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/cartao/CartaoNovoDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/cartao/TransacaoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/cartao/TransacaoDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/vr/miniautorizador/MiniautorizadorApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/vr/miniautorizador/MiniautorizadorApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -151,7 +148,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/vr/miniautorizador/service/CartaoValeService.java</url>
-          <line>30</line>
+          <line>32</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

@@ -1,10 +1,13 @@
 package com.vr.miniautorizador.service;
 
-import com.vr.miniautorizador.exception.autorizador.*;
+import com.vr.miniautorizador.exception.autorizador.CartaoJaExisteException;
+import com.vr.miniautorizador.exception.autorizador.CartaoNaoEncontradoException;
 import com.vr.miniautorizador.repository.CartaoValeRepository;
 import com.vr.miniautorizador.repository.cartao.CartaoVale;
 import com.vr.miniautorizador.service.cartao.CartaoNovoDto;
 import com.vr.miniautorizador.service.cartao.TransacaoDto;
+import com.vr.miniautorizador.service.validatransacao.BaseValidacaoTransacao;
+import com.vr.miniautorizador.service.validatransacao.TransacaoNivel0CartaoExiste;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,29 +40,15 @@ public class CartaoValeService {
     }
 
     public void realizarTransacao(TransacaoDto transacao) {
-        var entidade = repository.findById(transacao.getNumeroCartao()).orElse(null);
-        this.validarExistencia(entidade);
-        this.validarMesmaSenha(entidade, transacao.getSenhaCartao());
-        this.validarSaldoSuficiente(entidade, transacao.getValor());
+        var entidade = repository.findById(transacao.getNumeroCartao()).orElse(new CartaoVale());
+        BaseValidacaoTransacao condicao = new TransacaoNivel0CartaoExiste();
+        while (condicao != null) {
+            var res = condicao.validar(entidade, transacao, encoder);
+            log.trace("{} - {}", condicao.getClass().getName(), res);
+            condicao = condicao.getProxima();
+        }
         entidade.setSaldo(entidade.getSaldo().subtract(transacao.getValor()));
         repository.save(entidade);
-    }
-
-    private void validarExistencia(CartaoVale entidade) {
-        var res = Optional.ofNullable(entidade).orElseThrow(TransacaoCartaoInexistenteException::new);
-        log.trace("{} existe", res);
-    }
-
-    private void validarMesmaSenha(CartaoVale entidade, String senha) {
-        boolean comparacao = encoder.matches(senha, entidade.getSenha());
-        var res = Optional.of(comparacao).filter(v -> v).orElseThrow(TransacaoSenhaInvalida::new);
-        log.trace("{} mesma senha", res);
-    }
-
-    private void validarSaldoSuficiente(CartaoVale entidade, BigDecimal valor) {
-        BigDecimal saldo = entidade.getSaldo();
-        var res = Optional.of(saldo).filter(naConta -> naConta.compareTo(valor) >= 0).orElseThrow(TransacaoSaldoInsuficiente::new);
-        log.trace("{} com saldo", res);
     }
 
 }
